@@ -1,5 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+import chat from './features/chat';
 
 export default configureStore({
-    reducer: {},
-})
+    reducer: {
+        chat: chat
+    },
+});

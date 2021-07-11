@@ -10,6 +10,12 @@ function MessageBox({ onSend }) {
 		setMessage('');
 	};
 
+	const checkKeys = e => {
+		if (e.key === 'Enter') {
+			sendMessage();
+		}
+	};
+
 	return (
 		<div className={css.chat_message_area}>
 			<input
@@ -17,17 +23,13 @@ function MessageBox({ onSend }) {
 				type='text'
 				value={message}
 				onChange={e => setMessage(e.target.value)}
+				onKeyUp={checkKeys}
 				placeholder='Start typing your message...'
-				autoFocus={true}
+				autoFocus
 				ref={messageBoxRef}
 			/>
 			<button className={css.send_button} onClick={sendMessage}>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					fill='none'
-					viewBox='0 0 24 24'
-					stroke='currentColor'
-				>
+				<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
 					<path
 						strokeLinecap='round'
 						strokeLinejoin='round'
