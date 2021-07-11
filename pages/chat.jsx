@@ -4,27 +4,29 @@ import { recieve, loadHistory } from 'store/features/chat';
 import _ from 'lodash';
 import io from 'socket.io-client';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Container from 'components/container';
 import MessageBox from 'components/message-box';
 
 import css from 'styles/Chat.module.css';
 import ChatBody from 'components/chat-body';
 import { logout } from 'store/features/user';
+import { useCookies } from 'react-cookie';
 
 export default function Chat({ username }) {
 	const dispatch = useDispatch();
 	const ioRef = useRef();
+	const [usernameCookie, , removeCookie] = useCookies(['username']);
+	const router = useRouter();
 
 	const sendMessage = message => {
 		ioRef.current.emit('message', { message, user: username });
 	};
 
 	const leaveChat = () => {
-		// clear the cookies in the browser
-		document.cookies;
-		ioRef.current.emit('leave', { user: username });
 		ioRef.current.disconnect();
-		dispatch(logout());
+		removeCookie('username');
+		router.replace('/join');
 	};
 
 	const attachSocketListeners = useRef(() => {
@@ -45,6 +47,13 @@ export default function Chat({ username }) {
 		// 	ioRef.current.disconnect();
 		// };
 	});
+
+	useEffect(() => {
+		console.log(usernameCookie);
+		if (!usernameCookie.username) {
+			router.push('/join');
+		}
+	}, [usernameCookie, router]);
 
 	useEffect(() => {
 		ioRef.current = io();
@@ -80,16 +89,40 @@ export default function Chat({ username }) {
 	);
 }
 
+// utility function to parse cookies
+const parseCookies = req => {
+	if (!req.headers.cookie) return {};
+	let cookies = req.headers.cookie.split(';').map(c_str => {
+		let pair = c_str.trim().split('=');
+		return { [pair[0]]: pair[1] };
+	});
+	return cookies.reduce((prev, curr) => ({ ...prev, ...curr }), {});
+};
+
 //TODO implement reroute back to home page when cookie not set
-export const getServerSideProps = async ({ _req, query }) => {
-	if (_.isEmpty(query) || !query.username)
+export const getServerSideProps = async ({ req, query }) => {
+	// redirect back to the join page if cookie was not set
+	const cookies = parseCookies(req);
+	if (!cookies.username) {
 		return {
 			redirect: {
 				destination: `/join`,
 				permanent: false,
 			},
 		};
+	}
 
+	// if cookie is set, but query is not, build query
+	if (_.isEmpty(query) || !query.username) {
+		return {
+			redirect: {
+				destination: `/chat?username=${query.username}`,
+				permanent: false,
+			},
+		};
+	}
+
+	// otherwise, return the username to the component
 	return {
 		props: { username: query.username },
 	};

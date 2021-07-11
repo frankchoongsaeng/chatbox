@@ -8,7 +8,7 @@ import css from 'styles/join.module.css';
 function Join() {
 	const usernameRef = useRef();
 	const [_username, set_Username] = useState('');
-	const [cookies, setCookies] = useCookies(['username']);
+	const [, setCookies] = useCookies(['username']);
 	const [isEntering, setIsEntering] = useState(false);
 	const router = useRouter();
 
@@ -32,19 +32,11 @@ function Join() {
 			<div className={css.login_page}>
 				<div className={css.login_container}>
 					<div className={css.login_header}>
-						<Image
-							src='/images/hacker-logo.png'
-							alt='Hacker Logo Image'
-							width='210'
-							height='146'
-						/>
+						<Image src='/images/hacker-logo.png' alt='Hacker Logo Image' width='210' height='146' />
 					</div>
 					<div className={css.login_body}>
 						<InputControl>
-							<label
-								htmlFor='input'
-								className={css.dollar_sign}
-							>
+							<label htmlFor='input' className={css.dollar_sign}>
 								@
 							</label>
 							<input
@@ -55,20 +47,14 @@ function Join() {
 								maxLength='20'
 								ref={usernameRef}
 								value={_username}
-								onChange={e =>
-									set_Username(e.target.value)
-								}
+								onChange={e => set_Username(e.target.value)}
 								onKeyUp={setUserName}
 							/>
-							<span className={css.input_count}>
-								20
-							</span>
+							<span className={css.input_count}>20</span>
 						</InputControl>
 					</div>
 					<div className={css.login_footer}>
-						<p className='greeting'>
-							&gt;_&lt; your community awaits
-						</p>
+						<p className='greeting'>&gt;_&lt; your community awaits</p>
 						<p className={css.terminal_loader}></p>
 					</div>
 				</div>
