@@ -1,0 +1,94 @@
+.flex_layout {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	height: 100%;
+	border-radius: 0.5em;
+	overflow: hidden;
+}
+
+.chat_header {
+	min-height: 3.5em;
+	height: 3.5em;
+	background: #222;
+	border-radius: 0.5em 0.5em 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem;
+}
+
+.chat_body {
+	padding: 1rem;
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.chat_message_area {
+	color: #ddd;
+	display: flex;
+	position: relative;
+}
+
+.message_box {
+	background-color: black;
+	width: 100%;
+	caret-color: green;
+}
+
+.info {
+	text-align: center;
+	font-size: 90%;
+	color: #888;
+	padding: 0.5em;
+}
+
+.message_wrapper {
+	margin-bottom: 20px;
+	/* height: 200px; TODO remove this */
+	min-width: 200px;
+	max-width: 500px;
+	width: max-content;
+}
+
+.current_user_chat {
+	margin-left: auto;
+}
+
+.user_info {
+	font-size: 75%;
+	margin-bottom: 0.2rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05rem;
+	color: #888;
+}
+
+.message {
+	padding: 0.5em;
+	border: 1px solid #888;
+	border-radius: 0.5rem;
+}
+
+.send_button {
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	border: 0;
+	position: absolute;
+	right: 0;
+	transform: translateY(-50%) rotate(20deg);
+	opacity: 20%;
+	cursor: pointer;
+	transition: opacity 300ms ease;
+	background: green;
+	color: white;
+}
+
+.send_button svg {
+	width: 60%;
+	height: 60%;
+}
+
+.send_button:hover {
+	opacity: 100%;
+}

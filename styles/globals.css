@@ -1,16 +1,99 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700');
+
+:root {
+	--text-white: #dddddd;
+	--gray: #555;
+	--body: black;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+::-webkit-scrollbar {
+	background-color: transparent;
+	width: 5px;
+	transition: background-color 150ms linear;
+}
+
+::-webkit-scrollbar:hover {
+	background-color: #333;
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #555;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Inconsolata';
+	color: var(--text-white);
+	background-color: var(--body);
+}
+
+button {
+	cursor: pointer;
+}
+
+button.regular {
+	padding: 0.3rem 0.85rem;
+	border: 2px solid #555;
+	background-color: transparent;
+	color: inherit;
+	transition: background-color 150ms linear;
+}
+
+button.regular:hover {
+	background-color: black;
+}
+
+input,
+textarea {
+	background-color: transparent;
+	border: none;
+	padding: 0.75em;
+	outline: none;
+	font: inherit;
+	color: inherit;
+	font-size: 18px;
+	letter-spacing: 1px;
+	/* width: 100%; */
+}
+
+input:focus {
+	outline: none;
+}
+
+.input-control {
+	display: inline-flex;
+	align-items: center;
+	background-color: black;
+	color: var(--text-white);
+	border-radius: 0.35em;
+	border: 1px solid #555;
+	position: relative;
+}
+
+.input-control input {
+	flex-grow: 1;
+}
+
+.input-control:focus-within {
+	box-shadow: 0 0 0 0.05em var(--text-white);
+}
+
+.full_width {
+	min-width: 100%;
+}
+
+.container {
+	max-width: 72em;
+	width: 100%;
+	height: 90vh;
+	margin: 5vh auto;
+	border: 2px solid var(--gray);
+	border-radius: 0.5em;
+	background: #111;
 }

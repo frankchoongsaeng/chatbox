@@ -20,7 +20,11 @@ nextApp.prepare().then(() => {
 
     io.on('connection', socket => {
         console.log('connection from', socket.id);
-        socket.emit('joined', `user ${socket.id} joined the chat`);
+
+        socket.on('user-joined', data => {
+            console.log(data);
+            io.emit('joined', `${data.user} joined the chat`);
+        })
 
         socket.on('message', data => {
             io.emit('message', data)
