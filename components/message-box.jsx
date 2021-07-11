@@ -6,11 +6,13 @@ function MessageBox({ onSend }) {
 	const messageBoxRef = useRef();
 
 	const sendMessage = () => {
+		if (!message) return;
 		onSend(message);
 		setMessage('');
 	};
 
 	const checkKeys = e => {
+		if (!message) return;
 		if (e.key === 'Enter') {
 			sendMessage();
 		}

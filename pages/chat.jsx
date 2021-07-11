@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { recieve, loadHistory } from 'store/features/chat';
 import _ from 'lodash';
 import io from 'socket.io-client';
@@ -7,12 +7,12 @@ import Head from 'next/head';
 import Container from 'components/container';
 import MessageBox from 'components/message-box';
 
-import css from '../styles/Chat.module.css';
+import css from 'styles/Chat.module.css';
 import ChatBody from 'components/chat-body';
+import { logout } from 'store/features/user';
 
 export default function Chat({ username }) {
 	const dispatch = useDispatch();
-	// const _messages = useSelector(state => state.chat.messages);
 	const ioRef = useRef();
 
 	const sendMessage = message => {
@@ -20,39 +20,42 @@ export default function Chat({ username }) {
 	};
 
 	const leaveChat = () => {
-		ioRef.current.emit('left', { user: username });
+		// clear the cookies in the browser
+		document.cookies;
+		ioRef.current.emit('leave', { user: username });
 		ioRef.current.disconnect();
+		dispatch(logout());
 	};
 
-	useEffect(() => {
-		ioRef.current = io();
+	const attachSocketListeners = useRef(() => {
+		ioRef.current.emit('user-joined', { user: username }, previousMessages => {
+			dispatch(loadHistory(previousMessages));
+		});
 
 		ioRef.current.on('joined', message => {
 			dispatch(recieve(message));
-			// setMessages(existingMessages => [...existingMessages, message]);
 		});
 
 		ioRef.current.on('message', message => {
 			dispatch(recieve(message));
-			// setMessages(existingMessages => [...existingMessages, message]);
 		});
 
-		ioRef.current.emit('user-joined', { user: username }, previousMessages => {
-			dispatch(loadHistory(previousMessages));
-			// setMessages(previousMessages);
-		});
+		// return () => {
+		// 	ioRef.current.emit('leave', { user: username });
+		// 	ioRef.current.disconnect();
+		// };
+	});
 
-		return () => {
-			ioRef.current.emit('left', { user: username });
-			ioRef.current.disconnect();
-		};
+	useEffect(() => {
+		ioRef.current = io();
+		attachSocketListeners.current();
 	}, [username]);
 
 	return (
 		<>
 			<Head>
 				<title>Chatbox</title>
-				<meta name='description' content='a general chat room for hackers' />
+				<meta name='description' content='a general chat room for tech gods' />
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -70,22 +73,6 @@ export default function Chat({ username }) {
 						</button>
 					</div>
 					<ChatBody username={username} />
-					{/* <div ref={chatBodyRef} className={css.chat_body}>
-						{messages.map(m => {
-							if (m.type === 'info')
-								return (
-									<div key={m.id}>
-										<div className={`${css[m.type]} `}>
-											{m.type === 'info'
-												? m.message + ' @ ' + format(new Date(m.time), "kk':'mm")
-												: m.message}
-										</div>
-									</div>
-								);
-
-							if (m.type === 'message') return <UserMessage key={m.id} message={m} username={username} />;
-						})}
-					</div> */}
 					<MessageBox onSend={sendMessage} />
 				</div>
 			</Container>

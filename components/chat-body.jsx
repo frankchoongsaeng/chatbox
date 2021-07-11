@@ -26,6 +26,7 @@ function ChatBody({ username }) {
 	};
 
 	// check if the next message should cause a scroll to bottom
+	// reassign ref when isChatScrolled changes
 	// using ref to avoid react's annoying warning.
 	const shouldBodyScroll = useRef();
 	useEffect(() => {
@@ -44,7 +45,6 @@ function ChatBody({ username }) {
 		<div ref={chatBodyRef} className={css.chat_body} onScroll={checkScrollDistance}>
 			{messages.map(m => {
 				if (m.type === 'info') return <InfoMessage key={m.id} message={m} />;
-
 				if (m.type === 'message') return <UserMessage key={m.id} message={m} username={username} />;
 			})}
 		</div>

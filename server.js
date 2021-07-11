@@ -9,10 +9,12 @@ const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
 
 const Message = require('./lib/classes/message'); // get the Message contructor
-const attachSocketListeners = require("./lib/socket.io/listeners");
+const attachSocketListeners = require('./lib/socket.io/listeners');
 
 // declare a variable to hold all the messages while server is alive
 const messages = [];
+// declare a variable to hold all the users
+const users = {};
 
 nextApp.prepare().then(() => {
     const server = http.createServer((req, res) => {
@@ -24,7 +26,7 @@ nextApp.prepare().then(() => {
     const io = new socketio.Server(server);
 
     io.on('connection', socket => {
-        attachSocketListeners(io, socket, messages);
+        attachSocketListeners({ io, socket, storage: messages, users });
     });
 
     server.listen(port, () => {
