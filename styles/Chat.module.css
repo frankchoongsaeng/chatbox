@@ -30,6 +30,21 @@
 	position: relative;
 }
 
+.picker {
+	all: initial;
+	padding: 0 0.5rem;
+	border-right: 1px solid #3e3e3e;
+	background: black;
+	cursor: pointer;
+}
+
+.picker_drawer {
+	position: absolute;
+	left: 1rem;
+	bottom: calc(100% + 0.5rem);
+	width: calc(100% - 2rem);
+}
+
 .message_box {
 	background-color: black;
 	width: 100%;

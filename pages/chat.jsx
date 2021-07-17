@@ -8,10 +8,11 @@ import { useRouter } from 'next/router';
 import Container from 'components/container';
 import MessageBox from 'components/message-box';
 
-import css from 'styles/Chat.module.css';
 import ChatBody from 'components/chat-body';
 import { logout } from 'store/features/user';
 import { useCookies } from 'react-cookie';
+
+import css from 'styles/Chat.module.css';
 
 export default function Chat({ username }) {
 	const dispatch = useDispatch();
