@@ -12,7 +12,7 @@ import ChatBody from 'components/chat-body';
 import { logout } from 'store/features/user';
 import { useCookies } from 'react-cookie';
 
-import css from 'styles/Chat.module.css';
+import css from 'styles/chat.module.css';
 
 export default function Chat({ username }) {
 	const dispatch = useDispatch();

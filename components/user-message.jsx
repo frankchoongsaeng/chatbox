@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import css from 'styles/Chat.module.css';
+import css from 'styles/chat.module.css';
 
 function UserMessage({ message, username }) {
 	return (

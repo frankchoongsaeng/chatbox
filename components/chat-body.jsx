@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { scrolled } from 'store/features/chat';
 import UserMessage from './user-message';
-import css from '../styles/Chat.module.css';
+import css from '../styles/chat.module.css';
 import InfoMessage from './info-message';
 
 function ChatBody({ username }) {
