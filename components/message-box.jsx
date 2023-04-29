@@ -33,11 +33,11 @@ function MessageBox({ onSend, onTypingActivityChanged, usersTyping = [] }) {
 
   return (
     <>
-      {usersTyping.length > 0 && (
-        <span className={css.is_typing_wrapper}>
-          {createTypingMessage(usersTyping)}
-        </span>
-      )}
+      <span className={css.is_typing_wrapper}>
+        &gt; 
+        {usersTyping.length > 0 && createTypingMessage(usersTyping)}
+      </span>
+
       <div className={css.chat_message_area}>
         {showEmojis && (
           <div className={`${css.picker_drawer}`}>
@@ -155,7 +155,7 @@ function useActiveState(initialValue, cb = undefined) {
     if (cb) cb(isActive);
 
     // ensure to wait for idle state if current state is active
-    if(isActive) waitForIdle()
+    if (isActive) waitForIdle();
   }, [isActive, cb]);
 
   // run whenever the user state changes
