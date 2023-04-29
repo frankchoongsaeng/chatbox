@@ -89,8 +89,8 @@ export default function Chat({ username }) {
   return (
     <>
       <Head>
-        <title>Chatbox</title>
-        <meta name="description" content="a general chat room for tech gods" />
+        <title>General | Parallel talk</title>
+        <meta name="description" content="a general chat room for any purpose 😪" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
