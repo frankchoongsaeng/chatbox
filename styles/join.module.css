@@ -59,12 +59,9 @@
 	/*   font-size: 12px; */
 }
 
-.terminal_loader {
-	display: none;
-}
-
 .terminal_loader::after {
 	content: '/';
+	display: block;
 	animation-name: terminal-waiting;
 	animation-duration: 0.5s;
 	animation-timing-function: linear;
