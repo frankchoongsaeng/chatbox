@@ -6,6 +6,12 @@
 
 tasks:
   - init: npm install && npm run build
-    command: export NODE_OPTIONS=--openssl-legacy-provider && npm run start
+    command: npm run gp-start 
 
 
+# Ports to expose on workspace startup
+ports:
+  - port: 3006
+    visibility: public
+    name: Chatbox
+    description: Chatbox Preview
