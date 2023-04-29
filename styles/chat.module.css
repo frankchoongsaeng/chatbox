@@ -130,3 +130,12 @@
 .send_button:hover {
 	opacity: 100%;
 }
+
+
+.is_typing_wrapper {
+	font-size: smaller;
+	font-style: italic;
+	text-align: center;
+	padding: 0 0.5rem;
+	color: #888;
+}

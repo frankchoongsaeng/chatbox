@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "gp-start": "export NODE_OPTIONS=--openssl-legacy-provider && npm start",
     "server": "node server.js",
     "start": "node server.js",
     "dev": "next dev -p 3005",
