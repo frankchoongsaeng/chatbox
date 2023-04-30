@@ -2,6 +2,18 @@
 
 Welcome to the Parallel Talk contribution guide! Parallel Talk is a chat app where users can talk to whoever is available. It's a personal project that is available to the public.
 
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Getting Started](#getting-started)
+3. [Coding Standards](#coding-standards)
+4. [Submitting Your Work](#submitting-your-work)
+5. [Communication](#communication)
+6. [Reporting Issues](#reporting-issues)
+7. [Choosing the Right Issue](#choosing-the-right-issue)
+8. [Resources](#resources)
+9. [Review Process](#review-process)
+
 ## Prerequisites
 
 Before contributing to Parallel Talk, make sure you are familiar with:
@@ -13,7 +25,7 @@ Before contributing to Parallel Talk, make sure you are familiar with:
 
 ## Getting Started
 
-To get started with the project, please refer to the setup.md file.
+To get started with the project, please refer to the SETUP.md file.
 
 ## Coding Standards
 
@@ -32,7 +44,7 @@ To submit your work:
 1. Fork the project repository on GitHub.
 2. Create a new branch in your forked repository for your changes.
 3. Make your changes in the new branch.
-4. Commit your changes with descriptive commit messages.
+4. Commit your changes with descriptive commit messages, following the [Conventional Commits](https://www.conventionalcommits.org/) standard.
 5. Open a pull request from your branch to the main project repo.
 
 ## Communication
@@ -50,19 +62,30 @@ Please report any issues or bugs by following these steps:
 2. If not, open a new issue on GitHub.
 3. Clearly describe the issue, including steps to reproduce it and any relevant information (e.g., error messages, screenshots).
 
+## Choosing the Right Issue
+
+When looking for an issue to work on, consider the following:
+
+1. Choose an issue that aligns with your skills and interests.
+2. Look for issues labeled "good first issue" or "help wanted" if you're new to the project.
+3. Communicate with the maintainers or other contributors to ensure the issue hasn't been claimed by someone else.
+
 ## Resources
 
 Here are some resources to help you learn Node.js, Next.js, and Socket.IO:
 
 ### Node.js
+
 - [Node.js Official Documentation](https://nodejs.org/en/docs/)
 - [The Node.js Master Class](https://pirple.thinkific.com/courses/the-nodejs-master-class)
 
 ### Next.js
+
 - [Next.js Official Documentation](https://nextjs.org/docs)
 - [Next.js Crash Course by Traversy Media](https://www.youtube.com/watch?v=mTz0GXj8NN0)
 
 ### Socket.IO
+
 - [Socket.IO Official Documentation](https://socket.io/docs/v4)
 - [Socket.IO - Real-time Web Apps with JavaScript by Academind](https://www.youtube.com/watch?v=2nXQQ7Dv7iU)
 
