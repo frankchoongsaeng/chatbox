@@ -21,6 +21,7 @@ export default function Chat({ username }) {
     const router = useRouter()
     const [usersTyping, setsUsersTyping] = useState([])
     const [isConnected, setIsConnected] = useState(false)
+    const [usersOnlineCount, setUsersOnlineCount] = useState(0)
 
     const sendMessage = message => {
         socketRef.current.emit('message', { message, user: username })
@@ -58,6 +59,11 @@ export default function Chat({ username }) {
             socket.emit('user-joined', { user: username }, previousMessages => {
                 dispatch(loadHistory(previousMessages))
             })
+        })
+
+        // get the number of users available online
+        socket.on('online-users', count => {
+            setUsersOnlineCount(count)
         })
 
         // track when connection is lost
@@ -130,6 +136,7 @@ export default function Chat({ username }) {
                         onSend={sendMessage}
                         onTypingActivityChanged={sendTypingActivity}
                         usersTyping={usersTyping}
+                        usersOnline={usersOnlineCount}
                     />
                 </div>
             </Container>
